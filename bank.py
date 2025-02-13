@@ -1,6 +1,7 @@
 from flask import Flask, request, redirect, session
 from flask import render_template_string
 import time
+import os
 from datetime import datetime
 
 app = Flask(__name__)
@@ -155,4 +156,5 @@ def logout():
     return redirect('/')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Use PORT from environment or default to 5000
+    app.run(host='0.0.0.0', port=port, debug=True)
